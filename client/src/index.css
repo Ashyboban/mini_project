@@ -35,7 +35,7 @@ nav a {
     overflow: hidden; /* Prevent scrolling */
     height: 100%; /* Ensure body takes full viewport height */
     width: 100%; /* Ensure body takes full viewport width */
-    background-color:#FEF3C7
+    background-color:#fcfaea
     
 }
 .navbar-site-name h1 {
@@ -56,4 +56,5 @@ nav a {
     height: 80px; /* Set this according to your navbar height */
     background-color: #f8f9fa; /* Example background color */
 }
+
 
