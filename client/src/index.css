@@ -9,14 +9,20 @@ nav {
     justify-content: end;
     align-items: center;
     padding-inline: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
+    background-color: #dce0e6;
+    height: 80px;
+
 }
 
 nav a {
     padding: 1rem 1.5rem;
     font-weight: 500;
 }
-
+.navbar-site-name {
+    flex: 1; /* Pushes the site name to the left */
+  }
+ 
 .main-body {
     display: flex;
     justify-content: center;
@@ -24,4 +30,30 @@ nav a {
     min-height: 80vh;
     font-size: 3rem;
     font-weight: 700;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%; /* Ensure body takes full viewport height */
+    width: 100%; /* Ensure body takes full viewport width */
+    background-color:#FEF3C7
+    
 }
+.navbar-site-name h1 {
+    margin: 0; /* Remove default margin */
+    color: #000000; /* Solid black color */
+    font-family:  'Modern','clean font'; /* Modern,  */
+    font-size: 1.5rem; /* Slightly larger text size */
+    font-weight: 700; /* Bold text */
+    letter-spacing: 1.5px; /* Slight spacing between letters for modern look */
+    text-transform: uppercase; /* Makes the text uppercase */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  /* In your CSS file, e.g., App.css or Navbar.css */
+  .navbar {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    height: 80px; /* Set this according to your navbar height */
+    background-color: #f8f9fa; /* Example background color */
+}
+
