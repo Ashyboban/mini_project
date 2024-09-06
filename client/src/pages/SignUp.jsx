@@ -64,7 +64,7 @@ const SignUp = () => {
             </div>
             <button type="submit" className="submit-button" disabled={loading}>{loading?'loading...':'Sign Up'}</button>
           </form>
-          <p style={{ fontSize: '10px' }}>Already have an account? <a href="/login">Login here</a></p>
+          <p style={{ fontSize: '10px' }}>Already have an account? <a href="/sign-in">Login here</a></p>
         </div>
       </div>
     </>
