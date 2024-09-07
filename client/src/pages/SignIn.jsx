@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import Nav from './components/Nav';
 import {Link,useNavigate}from 'react-router-dom';
 import './SignUp.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice';
 
 const SignIn = () => {
   const [formData,setFormData]=useState({});
-  const [error,setError]=useState(null);
-  const [loading,setLoading]=useState(false);
+  const {loading,error}=useSelector((state)=>state.user);
   const navigate=useNavigate();
+  const dispatch=useDispatch();
   const handleChange=(e)=>{
     setFormData({
       ...formData,
@@ -16,30 +18,32 @@ const SignIn = () => {
   };
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    setLoading(true);
-    const res=await fetch('/server/auth/signin',
-      {
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json'},
-        
-        body:JSON.stringify(formData),
+    try
+    {
+
+      dispatch(signInStart());
+      const res=await fetch('/server/auth/signin',
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'},
+          
+          body:JSON.stringify(formData),
+        }
+      );
+      const data =await res.json();
+      console.log(data);
+      if(data.success==false){
+      dispatch(signInFailure(data.message));      
+        return;
       }
-    );
-    const data =await res.json();
-    if(data.success==false){
-      setLoading(false);
-      console.log(data.message);
-      
-      setError(data.message);
-      return;
+     dispatch(signInSuccess(data));
+      navigate('/');
     }
-    setLoading(false);
-    setError(null);
-    console.log(data);
-    navigate('/');
-  }
-  console.log(formData);
+    catch(error){
+      dispatch(signInFailure(error.message));
+    }
+    };
   return (
     <>
       <Nav />
@@ -52,7 +56,6 @@ const SignIn = () => {
               <label htmlFor="email">Email</label>
               <input type="email" id="email" name="email" required onChange={handleChange}/>
             </div>
-            <div className='error-message'>{error}</div>
             <div className="input-group">
               <label htmlFor="password">Password</label>
               <input type="password" id="password" name="password" required onChange={handleChange}/>
@@ -60,7 +63,7 @@ const SignIn = () => {
             
             <button type="submit" className="submit-button" disabled={loading}>{loading?'loading...':'Sign In'}</button>
           </form>
-          <p style={{ fontSize: '10px' }}>Don't Have an Account? <Link to={'/sign-up'}>Sign Up</Link>
+          <p style={{ fontSize: '10px' }}>Dont Have an Account? <Link to={'/sign-up'}>Sign Up</Link>
           </p>
         </div>
       </div>
