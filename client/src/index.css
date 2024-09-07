@@ -57,3 +57,7 @@ nav a {
     background-color: #f8f9fa; /* Example background color */
 }
 
+.error-msg{
+    color: red;
+    font-size: .8rem;
+}

@@ -17,6 +17,7 @@ const SignIn = () => {
     });
   };
   const handleSubmit=async(e)=>{
+    console.log("not working");
     e.preventDefault();
     try
     {
@@ -32,8 +33,9 @@ const SignIn = () => {
         }
       );
       const data =await res.json();
-      console.log(data);
+      // console.log(data);
       if(data.success==false){
+        // console.log(data);
       dispatch(signInFailure(data.message));      
         return;
       }
@@ -55,6 +57,7 @@ const SignIn = () => {
             <div className="input-group">
               <label htmlFor="email">Email</label>
               <input type="email" id="email" name="email" required onChange={handleChange}/>
+              <div className="error-msg">{error}</div>
             </div>
             <div className="input-group">
               <label htmlFor="password">Password</label>
