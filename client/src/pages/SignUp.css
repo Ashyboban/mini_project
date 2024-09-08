@@ -141,3 +141,96 @@ body {
     border: 2px solid white;
     object-fit: cover;
   }
+  .profile-form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Form Links (Delete Account & Sign Out) */
+  .form-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .form-links a {
+    font-size: 14px;
+    color: #d9534f;
+    text-decoration: none;
+  }
+  
+  .form-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .link-signout {
+    align-self: flex-start;
+  }
+  
+  .link-delete {
+    align-self: flex-end;
+    color: #d9534f;
+  }
+  .btn-long {
+    width: 100%; /* Full-width button */
+    padding: 12px;
+    font-size: 16px;
+    background-color:  #006400;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .form-heading {
+    font-size: 24px; /* Font size for the heading */
+    font-weight: bold; /* Make the heading bold */
+    margin-bottom: 20px; /* Space below the heading */
+    color: #333; /* Dark color for contrast */
+    padding-left: 190px; 
+  }
+  
+  
