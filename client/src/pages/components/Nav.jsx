@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom"
-
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import '../SignUp.css';
 const Nav = () => {
+  const {currentUser}=useSelector(state=>state.user)
   return (
     <nav>
        <div className="navbar-site-name">
@@ -10,9 +12,21 @@ const Nav = () => {
       </div>
 
         <Link to="/">Home</Link>
-        <Link to="/profile">Profile</Link>
         <Link to="/about">About</Link>
-        <Link to="/sign-in">SignIn</Link>
+        <div className="navbar-user">
+        {currentUser ? (
+  <Link to='/profile'>
+    <img
+      className="navbar-avatar"
+      src={currentUser.avatar}
+      alt='profile'
+    />
+  </Link>
+) : (
+  <Link to='/sign-in' className='text-slate-700 hover:underline'>Sign in</Link>
+)}
+
+      </div>
     </nav>
   )
 }
