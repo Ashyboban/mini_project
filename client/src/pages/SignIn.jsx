@@ -4,6 +4,7 @@ import {Link,useNavigate}from 'react-router-dom';
 import './SignUp.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice';
+import OAuth from './components/OAuth';
 
 const SignIn = () => {
   const [formData,setFormData]=useState({});
@@ -65,6 +66,8 @@ const SignIn = () => {
             </div>
             
             <button type="submit" className="submit-button" disabled={loading}>{loading?'loading...':'Sign In'}</button>
+            <OAuth/>
+
           </form>
           <p style={{ fontSize: '10px' }}>Dont Have an Account? <Link to={'/sign-up'}>Sign Up</Link>
           </p>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Nav from './components/Nav';
 import {Link,useNavigate}from 'react-router-dom';
 import './SignUp.css';
+import OAuth from './components/OAuth';
 
 const SignUp = () => {
   const [formData,setFormData]=useState({});
@@ -63,6 +64,7 @@ const SignUp = () => {
               <input type="password" id="confirm-password" name="confirm-password" required onChange={handleChange}/>
             </div>
             <button type="submit" className="submit-button" disabled={loading}>{loading?'loading...':'Sign Up'}</button>
+            <OAuth/>
           </form>
           <p style={{ fontSize: '10px' }}>Already have an account? <a href="/sign-in">Login here</a></p>
         </div>
