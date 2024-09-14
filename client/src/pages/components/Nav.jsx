@@ -11,9 +11,14 @@ const Nav = () => {
 
       </div>
 
+      <div>
+        <input type="text" className="search" placeholder="Search your property" />
+      </div>
+
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <div className="navbar-user">
+          
         {currentUser ? (
   <Link to='/profile'>
     <img

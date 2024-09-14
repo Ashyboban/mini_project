@@ -57,6 +57,12 @@ nav a {
     background-color: #f8f9fa; /* Example background color */
 }
 
+.search {
+    padding: 10px;
+    justify-content: center;
+
+}
+
 .error-msg{
     color: red;
     font-size: .8rem;

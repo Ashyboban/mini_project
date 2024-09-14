@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+ 
 import dotenv from 'dotenv';
 dotenv.config();
 mongoose.connect("mongodb+srv://ashy:ashy@cluster0.7xnsr.mongodb.net/mini_project?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
