@@ -4,16 +4,19 @@ import './SignUp.css';
 import { useRef, useState,useEffect } from "react";
 import {getDownloadURL, getStorage, uploadBytesResumable,ref} from 'firebase/storage';
 import { app } from '../firebase';
-
+import { updateUserStart,updateUserSuccess,updateUserFailure } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 
 const Profile = () => {
   const fileRef=useRef(null);
-  const {currentUser} =useSelector((state)=>state.user)
+  const {currentUser,error} =useSelector((state)=>state.user);
   const [file,setFile]=useState(undefined)
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
-  const [formData,setFormData]=useState({})
+  const [formData,setFormData]=useState({});
+  const [updateSuccess,setUpdateSuccess]=useState(false);
+  const dispatch=useDispatch();
   //firebase storage
   //  allow read;
   //allow write: if 
@@ -50,6 +53,33 @@ const Profile = () => {
 
 
   };
+  const handleChange=(e)=>{
+    setFormData({...formData,[e.target.id]:e.target.value})
+  }
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res=await fetch(`/server/user/update/${currentUser._id}`,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+
+        },
+        body:JSON.stringify(formData),
+      });
+      const data=await res.json()
+      if (data.success==false){
+        dispatch(updateUserFailure(data.message));
+        return
+      }
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  }
   return (
     <>
       <Nav />
@@ -84,23 +114,29 @@ const Profile = () => {
         </p>
 
       {/* Form */}
-      <form className="profile-form">
+      <form className="profile-form" onSubmit={handleSubmit}>
         {/* Name */}
         <div className="form-group">
           
-          <input type="text" id="name" className="form-control" placeholder="username" />
+          <input type="text" id="name" className="form-control" placeholder="username"   defaultValue={currentUser.username}
+        onChange={handleChange}
+/>
         </div>
-
+      
         {/* Email */}
         <div className="form-group">
          
-          <input type="email" id="email" className="form-control" placeholder="email" />
+          <input type="email" id="email" className="form-control" placeholder="email"  defaultValue={currentUser.email}
+          onChange={handleChange}
+/>
+         
         </div>
 
         {/* Password */}
         <div className="form-group">
           
-          <input type="password" id="password" className="form-control" placeholder="password" />
+          <input type="password" id="password" className="form-control" placeholder="password"  onChange={handleChange}/>
+
         </div>
         <div className="form-group">
           <button type="submit" className="btn-long">Submit</button>
@@ -110,7 +146,13 @@ const Profile = () => {
         <div className="form-links">
           <a href="/signout" className="link-signout">Sign Out</a>
           <a href="/delete-account" className="link-delete">Delete Account</a>
+          
+     
         </div>
+        <p className='text-red-700 mt-5'>{error ? error : ''}</p>
+      <p className='text-green-700 mt-5'>
+        {updateSuccess ? 'User is updated successfully!' : ''}
+      </p>
       </form>
     </div>
   
