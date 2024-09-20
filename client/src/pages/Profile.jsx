@@ -8,7 +8,7 @@ import { updateUserStart,updateUserSuccess,updateUserFailure,deleteUserFailure,
   deleteUserStart ,deleteUserSuccess, signOutUserStart,
   } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';  // Import useNavigate for navigation
+import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate for navigation
 
 
 
@@ -184,6 +184,7 @@ const Profile = () => {
         <div className="form-group">
           <button type="submit" className="btn-long">Update</button>
         </div>
+        <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to={"/create-listing"}>Create Listing</Link>
 
         {/* Links for Sign Out and Delete Account */}
        
