@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Nav from "./components/Nav";
+//import Nav from "./components/Nav";
 import {app} from '../firebase';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage';
 import { useSelector } from "react-redux";
